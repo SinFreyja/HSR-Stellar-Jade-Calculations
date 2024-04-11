@@ -7,74 +7,49 @@
 </head>
 <body>
     <h1>Calculator</h1>
-    <h2>Dailies</h2>
     <div>
         <label for="dailiesInput">Enter the number of dailies:</label>
         <input type="number" id="dailiesInput">
-        <button onclick="calculateDailies()">Calculate</button>
-        <p id="dailiesResult"></p>
     </div>
 
-    <h2>SU (Special Unit)</h2>
     <div>
         <label for="suInput">Enter the number of SU:</label>
         <input type="number" id="suInput">
-        <button onclick="calculateSU()">Calculate</button>
-        <p id="suResult"></p>
     </div>
 
-    <h2>MOC and PF (Mission Office Credits and Power Fragments)</h2>
     <div>
         <label for="mocPfInput">Enter the number of MOC/PF:</label>
         <input type="number" id="mocPfInput">
-        <button onclick="calculateMocPf()">Calculate</button>
-        <p id="mocPfResult"></p>
     </div>
 
-    <h2>Paid</h2>
     <div>
         <label for="paidInput">Enter the number for paid:</label>
         <input type="number" id="paidInput">
-        <button onclick="calculatePaid()">Calculate</button>
-        <p id="paidResult"></p>
     </div>
 
-    <h2>Options</h2>
     <div>
         <label for="includeBP">Include BP (Base Power):</label>
-        <input type="checkbox" id="includeBP" onchange="toggleBP()">
+        <input type="checkbox" id="includeBP">
     </div>
-    <p id="bpResult" style="display:none;">BP: 1320</p>
+
+    <button onclick="calculate()">Calculate</button>
+    <p id="totalResult"></p>
 
     <script>
-        function calculateDailies() {
-            var input = parseInt(document.getElementById("dailiesInput").value);
-            document.getElementById("dailiesResult").innerHTML = "Dailies: " + (60 * input);
-        }
-
-        function calculateSU() {
-            var input = parseInt(document.getElementById("suInput").value);
-            document.getElementById("suResult").innerHTML = "SU: " + (225 * input);
-        }
-
-        function calculateMocPf() {
-            var input = parseInt(document.getElementById("mocPfInput").value);
-            document.getElementById("mocPfResult").innerHTML = "MOC/PF: " + (720 * input);
-        }
-
-        function calculatePaid() {
-            var input = parseInt(document.getElementById("paidInput").value);
-            document.getElementById("paidResult").innerHTML = "Daily: " + (90 * input) + "<br>Reset: " + (800 * input);
-        }
-
-        function toggleBP() {
+        function calculate() {
+            var dailies = parseInt(document.getElementById("dailiesInput").value) || 0;
+            var su = parseInt(document.getElementById("suInput").value) || 0;
+            var mocPf = parseInt(document.getElementById("mocPfInput").value) || 0;
+            var paid = parseInt(document.getElementById("paidInput").value) || 0;
             var includeBP = document.getElementById("includeBP").checked;
-            var bpResult = document.getElementById("bpResult");
+
+            var total = (60 * dailies) + (225 * su) + (720 * mocPf) + (90 * paid);
+
             if (includeBP) {
-                bpResult.style.display = "block";
-            } else {
-                bpResult.style.display = "none";
+                total += 1320;
             }
+
+            document.getElementById("totalResult").innerHTML = "Total: " + total;
         }
     </script>
 </body>
