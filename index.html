@@ -3,27 +3,78 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Multiplication Calculator</title>
+    <title>Calculator</title>
 </head>
 <body>
-    <h1>Multiplication Calculator</h1>
+    <h1>Calculator</h1>
+    <h2>Dailies</h2>
     <div>
-        <label for="num1">Enter the first number:</label>
-        <input type="number" id="num1">
+        <label for="dailiesInput">Enter the number of dailies:</label>
+        <input type="number" id="dailiesInput">
+        <button onclick="calculateDailies()">Calculate</button>
+        <p id="dailiesResult"></p>
     </div>
+
+    <h2>SU (Special Unit)</h2>
     <div>
-        <label for="num2">Enter the second number:</label>
-        <input type="number" id="num2">
+        <label for="suInput">Enter the number of SU:</label>
+        <input type="number" id="suInput">
+        <button onclick="calculateSU()">Calculate</button>
+        <p id="suResult"></p>
     </div>
-    <button onclick="multiplyNumbers()">Multiply</button>
-    <div id="result"></div>
+
+    <h2>MOC and PF (Mission Office Credits and Power Fragments)</h2>
+    <div>
+        <label for="mocPfInput">Enter the number of MOC/PF:</label>
+        <input type="number" id="mocPfInput">
+        <button onclick="calculateMocPf()">Calculate</button>
+        <p id="mocPfResult"></p>
+    </div>
+
+    <h2>Paid</h2>
+    <div>
+        <label for="paidInput">Enter the number for paid:</label>
+        <input type="number" id="paidInput">
+        <button onclick="calculatePaid()">Calculate</button>
+        <p id="paidResult"></p>
+    </div>
+
+    <h2>Options</h2>
+    <div>
+        <label for="includeBP">Include BP (Base Power):</label>
+        <input type="checkbox" id="includeBP" onchange="toggleBP()">
+    </div>
+    <p id="bpResult" style="display:none;">BP: 1320</p>
 
     <script>
-        function multiplyNumbers() {
-            var num1 = parseFloat(document.getElementById("num1").value);
-            var num2 = parseFloat(document.getElementById("num2").value);
-            var result = num1 * num2;
-            document.getElementById("result").innerHTML = "Result: " + result;
+        function calculateDailies() {
+            var input = parseInt(document.getElementById("dailiesInput").value);
+            document.getElementById("dailiesResult").innerHTML = "Dailies: " + (60 * input);
+        }
+
+        function calculateSU() {
+            var input = parseInt(document.getElementById("suInput").value);
+            document.getElementById("suResult").innerHTML = "SU: " + (225 * input);
+        }
+
+        function calculateMocPf() {
+            var input = parseInt(document.getElementById("mocPfInput").value);
+            document.getElementById("mocPfResult").innerHTML = "MOC/PF: " + (720 * input);
+        }
+
+        function calculatePaid() {
+            var input = parseInt(document.getElementById("paidInput").value);
+            document.getElementById("paidResult").innerHTML = "Daily: " + (90 * input) + "<br>Reset: " + (800 * input);
+        }
+
+        function toggleBP() {
+            var includeBP = document.getElementById("includeBP").checked;
+            var bpResult = document.getElementById("bpResult");
+            if (includeBP) {
+                bpResult.style.display = "block";
+            } else {
+                bpResult.style.display = "none";
+            }
         }
     </script>
 </body>
