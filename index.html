@@ -23,6 +23,7 @@
     </div>
 
     <div>
+        <h2>Paid</h2>
         <label for="paidInput">Enter the number for paid:</label>
         <input type="number" id="paidInput">
     </div>
@@ -33,6 +34,12 @@
     </div>
 
     <button onclick="calculate()">Calculate</button>
+
+    <h2>Breakdown</h2>
+    <ul id="breakdown">
+        <!-- Breakdown items will be added dynamically here -->
+    </ul>
+
     <p id="totalResult"></p>
 
     <script>
@@ -43,11 +50,29 @@
             var paid = parseInt(document.getElementById("paidInput").value) || 0;
             var includeBP = document.getElementById("includeBP").checked;
 
-            var total = (60 * dailies) + (225 * su) + (720 * mocPf) + (90 * paid);
+            var breakdown = [];
+
+            breakdown.push("Dailies: " + (60 * dailies));
+            breakdown.push("SU: " + (225 * su));
+            breakdown.push("MOC/PF: " + (720 * mocPf));
+            breakdown.push("Daily: " + (90 * paid));
+            breakdown.push("Reset: " + (800 * paid));
+
+            var total = (60 * dailies) + (225 * su) + (720 * mocPf) + (90 * paid) + (800 * paid);
 
             if (includeBP) {
+                breakdown.push("BP: 1320");
                 total += 1320;
             }
+
+            var breakdownList = document.getElementById("breakdown");
+            breakdownList.innerHTML = ""; // Clear previous breakdown
+
+            breakdown.forEach(function(item) {
+                var li = document.createElement("li");
+                li.textContent = item;
+                breakdownList.appendChild(li);
+            });
 
             document.getElementById("totalResult").innerHTML = "Total: " + total;
         }
