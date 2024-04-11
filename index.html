@@ -8,8 +8,8 @@
 <body>
     <h1>Calculator</h1>
     <div>
-        <label for="dailiesInput">Enter the number of dailies:</label>
-        <input type="number" id="dailiesInput">
+        <label for="dailyPaidInput">Enter the number for daily paid:</label>
+        <input type="number" id="dailyPaidInput">
     </div>
 
     <div>
@@ -23,9 +23,9 @@
     </div>
 
     <div>
-        <h2>Paid</h2>
-        <label for="dailyPaidInput">Enter the number for daily paid:</label>
-        <input type="number" id="dailyPaidInput">
+        <h2>Calculated Inputs</h2>
+        <label for="dailiesInput">Number of dailies:</label>
+        <input type="number" id="dailiesInput" readonly>
 
         <label for="resetPaidInput">Enter the number for reset paid:</label>
         <input type="number" id="resetPaidInput">
@@ -46,11 +46,15 @@
     <p id="totalResult"></p>
 
     <script>
+        document.getElementById("dailyPaidInput").addEventListener("input", function() {
+            document.getElementById("dailiesInput").value = this.value;
+        });
+
         function calculate() {
-            var dailies = parseInt(document.getElementById("dailiesInput").value) || 0;
+            var dailyPaid = parseInt(document.getElementById("dailyPaidInput").value) || 0;
             var su = parseInt(document.getElementById("suInput").value) || 0;
             var mocPf = parseInt(document.getElementById("mocPfInput").value) || 0;
-            var dailyPaid = parseInt(document.getElementById("dailyPaidInput").value) || 0;
+            var dailies = parseInt(document.getElementById("dailiesInput").value) || 0;
             var resetPaid = parseInt(document.getElementById("resetPaidInput").value) || 0;
             var includeBP = document.getElementById("includeBP").checked;
 
