@@ -24,8 +24,11 @@
 
     <div>
         <h2>Paid</h2>
-        <label for="paidInput">Enter the number for paid:</label>
-        <input type="number" id="paidInput">
+        <label for="dailyPaidInput">Enter the number for daily paid:</label>
+        <input type="number" id="dailyPaidInput">
+
+        <label for="resetPaidInput">Enter the number for reset paid:</label>
+        <input type="number" id="resetPaidInput">
     </div>
 
     <div>
@@ -47,7 +50,8 @@
             var dailies = parseInt(document.getElementById("dailiesInput").value) || 0;
             var su = parseInt(document.getElementById("suInput").value) || 0;
             var mocPf = parseInt(document.getElementById("mocPfInput").value) || 0;
-            var paid = parseInt(document.getElementById("paidInput").value) || 0;
+            var dailyPaid = parseInt(document.getElementById("dailyPaidInput").value) || 0;
+            var resetPaid = parseInt(document.getElementById("resetPaidInput").value) || 0;
             var includeBP = document.getElementById("includeBP").checked;
 
             var breakdown = [];
@@ -55,10 +59,10 @@
             breakdown.push("Dailies: " + (60 * dailies));
             breakdown.push("SU: " + (225 * su));
             breakdown.push("MOC/PF: " + (720 * mocPf));
-            breakdown.push("Daily: " + (90 * paid));
-            breakdown.push("Reset: " + (800 * paid));
+            breakdown.push("Daily: " + (90 * dailyPaid));
+            breakdown.push("Reset: " + (800 * resetPaid));
 
-            var total = (60 * dailies) + (225 * su) + (720 * mocPf) + (90 * paid) + (800 * paid);
+            var total = (60 * dailies) + (225 * su) + (720 * mocPf) + (90 * dailyPaid) + (800 * resetPaid);
 
             if (includeBP) {
                 breakdown.push("BP: 1320");
