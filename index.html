@@ -36,6 +36,17 @@
         <input type="checkbox" id="includeBP">
     </div>
 
+    <div>
+        <h2>Additional Compensation</h2>
+        <label for="livestreamCheckbox">Livestream:</label>
+        <input type="checkbox" id="livestreamCheckbox">
+        <p id="livestreamResult" style="display:none;">Livestream - 300</p>
+
+        <label for="compensationCheckbox">Next Patch Compensation:</label>
+        <input type="checkbox" id="compensationCheckbox">
+        <p id="compensationResult" style="display:none;">Next Patch Compensation - 600</p>
+    </div>
+
     <button onclick="calculate()">Calculate</button>
 
     <h2>Breakdown</h2>
@@ -71,6 +82,22 @@
             if (includeBP) {
                 breakdown.push("BP: 1320");
                 total += 1320;
+            }
+
+            if (document.getElementById("livestreamCheckbox").checked) {
+                breakdown.push("Livestream - 300");
+                total += 300;
+                document.getElementById("livestreamResult").style.display = "block";
+            } else {
+                document.getElementById("livestreamResult").style.display = "none";
+            }
+
+            if (document.getElementById("compensationCheckbox").checked) {
+                breakdown.push("Next Patch Compensation - 600");
+                total += 600;
+                document.getElementById("compensationResult").style.display = "block";
+            } else {
+                document.getElementById("compensationResult").style.display = "none";
             }
 
             var breakdownList = document.getElementById("breakdown");
